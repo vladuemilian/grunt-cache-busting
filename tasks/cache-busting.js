@@ -32,13 +32,14 @@ module.exports = function (grunt) {
 					fs.unlink(file);
 				})
 			}
+
 			fs.rename(this.data.file, outputFile);
-			var from = replacementWithoutExtension + (replacementExtension ? "((\-?)(.+)*)" + replacementExtension : '');
+
 			gruntTextReplace.replace({
 				src: this.data.replace,
 				overwrite: true,
 				replacements: [{
-					from: new RegExp(from),
+					from: new RegExp(replacementWithoutExtension + replacementExtension),
 					to: replacementWithoutExtension + "-" + hash + replacementExtension
 				}]
 			});
